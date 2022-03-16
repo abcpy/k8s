@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: command-demo-2
+  namespace: default
+  labels:
+    purpose: demonstrate-command
+spec:
+  containers:
+  - name: command-demo-2
+    image: debian:stable
+    resources:
+      limits:
+        cpu: 200m
+        memory: 50Mi
+    env:
+      - name: MESSAGE
+        value: "hello word" 
+    command: ["/bin/echo"]
+    args: ["$(MESSAGE)"]
+  restartPolicy: OnFailure

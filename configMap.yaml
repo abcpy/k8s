@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-db-config
+  namespace: default
+data:
+  db-url: default
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-configmap
+  namespace: default
+  labels:
+    app: my-configmap
+spec:
+  containers:
+  - name: my-configmap
+    image: busybox:latest
+    command: [ "/bin/sh", "-c", "env" ]
+    env:
+       - name: db_env
+         valueFrom:
+            configMapKeyRef:
+              name: my-db-config
+              key: db-url
+    resources:
+      limits:
+        cpu: 200m
+        memory: 128Mi
+   

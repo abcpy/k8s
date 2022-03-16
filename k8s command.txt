@@ -1,0 +1,20 @@
+ kubectl get pod
+ kubectl describe pod my-nginx
+ kubectl delete pod my-nginx
+ kubectl create -f nginx.yaml
+ kubectl exec -i -t my-nginx -- /bin/bash
+ kubectl apply -f init_pod.yaml
+ kubectl get po -w
+ kubectl logs myapp
+ kubectl logs myapp -c init-container
+ kubectl create namespace cpu-example
+ kubectl get pod cpu-demo --output=yaml --namespace=cpu-example
+kubectl get node --show-labels
+kubectl label nodes worker-2 disktype=ssd
+kubectl get service
+kubectl get all
+kubectl get po -w
+kubectl get pod -l run=my-nginx -o yaml
+kubectl get svc
+kubectl describe svc my-nginx
+ 

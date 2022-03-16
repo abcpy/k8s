@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-nginx
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: my-nginx
+    image: nginx:latest
+    volumeMounts:
+      - mountPath: /test-pd
+        name: test-volume
+    resources:
+      limits:
+        cpu: 200m
+        memory: 500Mi
+      requests:
+        cpu: 100m
+        memory: 200Mi
+  volumes:
+    - name: test-volume
+      hostPath:
+        path: /nginx
+        type: Directory

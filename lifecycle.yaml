@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle
+  labels:
+    name: lifecycle
+spec:
+  containers:
+  - name: lifecycle
+    image: nginx:latest
+    lifecycle:
+      postStart: 
+        exec:
+          command: ["sh", "-c", "echo life cycle form postStart > /usr/share/message"]
+    resources:
+     limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+     - containerPort: 80
+       
+           
